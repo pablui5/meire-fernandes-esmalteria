@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meire Fernandes Esmalteria</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Esmalteria especializada em blindagem e estética das unhas, mãos e pés.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: a loja é um leque de cores. O hero inteiro é pintado com o esmalte escolhido
+   no leque, e essa cor acompanha a página até a mensagem de agendamento.
+   Visual único e deliberado: a cor da página vem do esmalte, sem tema escuro separado. */
+:root {
+  --polish: #5E0F24;      /* esmalte ativo */
+  --hero: #5E0F24;        /* cor já pintada no hero */
+  --on-polish: #FFF4F3;
+  --accent: #5E0F24;      /* esmalte legível sobre o fundo claro */
+  --on-accent: #FFF4F3;
+  --leite: #FCF1F1;       /* fundo rosado de leite */
+  --petala: #F4D3D1;      /* rosa de apoio */
+  --ink: #2C0A17;         /* vinho quase preto */
+  --muted: #74505B;
+  --line: #E8CBCB;
+  --serif: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --sans: "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  margin: 0;
+  background: var(--leite); color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px); z-index: 30;
+  background: var(--polish);
+}
+h1, h2, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+.band {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.inner { max-width: 1160px; margin-inline: auto; }
+h2 {
+  font: italic 500 clamp(2.3rem, 5.2vw, 3.9rem)/1.06 var(--serif);
+  letter-spacing: -.01em; text-wrap: balance;
+}
+
+/* Cabeçalho */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--polish); color: var(--on-polish);
+  transition: background-color .7s ease, color .5s ease;
+}
+.top .inner { display: flex; align-items: center; gap: 28px; min-height: 64px; }
+.brand { font: italic 500 1.3rem/1 var(--serif); text-decoration: none; margin-right: auto; }
+.top nav { display: flex; gap: 26px; font-size: .97rem; }
+.top nav a { text-decoration: none; padding-block: 6px; border-bottom: 1px solid transparent; }
+.top nav a:hover { border-bottom-color: currentColor; }
+.top .book {
+  text-decoration: none; font-weight: 600; font-size: .95rem; white-space: nowrap;
+  padding: 8px 18px; border-radius: 999px; border: 1.5px solid currentColor;
+}
+.top :focus-visible, .hero :focus-visible { outline-color: var(--on-polish); }
+
+/* Hero */
+.hero {
+  position: relative; overflow: hidden;
+  background: var(--hero); color: var(--on-polish);
+  transition: color .5s ease;
+}
+.paint {
+  position: absolute; inset: 0; pointer-events: none;
+  clip-path: circle(0 at 50% 50%);
+}
+.hero .inner {
+  position: relative;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  gap: 24px; align-items: end;
+  padding-top: clamp(40px, 7vw, 88px);
+}
+.hero-text { padding-bottom: clamp(48px, 8vw, 104px); min-width: 0; }
+h1 {
+  font: italic 500 clamp(3.7rem, 9.4vw, 7.6rem)/.94 var(--serif);
+  letter-spacing: -.02em;
+}
+h1 span { display: block; }
+.lede { max-width: 30em; margin-top: 28px; font-size: clamp(1.1rem, 1.7vw, 1.3rem); line-height: 1.5; }
+.cta {
+  display: inline-block; margin-top: 32px; padding: 14px 30px; border-radius: 999px;
+  background: var(--on-polish); color: var(--hero);
+  font-weight: 600; text-decoration: none;
+  transition: transform .15s ease;
+}
+.cta:hover { transform: translateY(-2px); }
+.fan-box { min-width: 0; }
+.fan { display: block; width: 100%; height: auto; overflow: visible; margin-bottom: -6px; }
+.sw { transform-box: view-box; transform-origin: 320px 470px; transform: rotate(var(--a)); animation: open 1s cubic-bezier(.2,.8,.2,1) both; cursor: pointer; outline: none; }
+.sw .lift { transition: transform .25s ease; }
+.sw:hover .lift, .sw:focus-visible .lift { transform: translateY(-14px); }
+.sw.on .lift { transform: translateY(-30px); }
+.sw.on .nail, .sw:focus-visible .nail { stroke: var(--on-polish); stroke-width: 3; }
+@keyframes open { from { transform: rotate(0deg); } }
+.color-now {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 4px 12px;
+  padding-bottom: 12px; text-align: center; font-size: .97rem;
+}
+.color-now b { font: italic 500 1.5rem/1.2 var(--serif); }
+
+/* Blindagem */
+.armor { padding-block: clamp(64px, 10vw, 128px); }
+.armor .inner {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(40px, 7vw, 96px); align-items: center;
+}
+.armor-text { min-width: 0; }
+.armor-text p { max-width: 34em; margin-top: 22px; }
+.nail-cut {
+  width: min(100%, 400px); margin-inline: auto; overflow: hidden;
+  border-radius: 50% 50% 18px 18px / 36% 36% 18px 18px;
+  text-align: center;
+}
+.nail-cut li { padding: 16px 20px; }
+.nail-cut b { display: block; font: italic 500 1.35rem/1.2 var(--serif); }
+.nail-cut span { font-size: .95rem; line-height: 1.35; display: block; margin-top: 2px; }
+.l-top { padding-top: 76px !important; background: linear-gradient(rgba(255,255,255,.24), rgba(255,255,255,.14)), var(--polish); color: var(--on-polish); transition: background-color .7s ease, color .5s ease; }
+.l-cor { background: var(--polish); color: var(--on-polish); transition: background-color .7s ease, color .5s ease; }
+.l-gel { background: #EFB9B9; }
+.l-unha { background: #F9DDD9; padding-bottom: 26px !important; }
+
+/* Serviços */
+.services { background: #fff; padding-block: clamp(64px, 10vw, 120px); }
+.services .head { max-width: 40em; }
+.services .head p { margin-top: 16px; }
+.pick {
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px); align-items: start; margin-top: clamp(36px, 5vw, 56px);
+}
+.list { min-width: 0; border-top: 1px solid var(--line); }
+.item { border-bottom: 1px solid var(--line); }
+.item label {
+  display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 18px;
+  padding-block: 18px; cursor: pointer;
+}
+.item input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.mark {
+  width: 22px; height: 32px; margin: 3px 0 0 4px;
+  border-radius: 50% 50% 5px 5px / 58% 58% 5px 5px;
+  border: 1.5px solid var(--muted); background: transparent;
+  transition: background-color .25s ease, border-color .25s ease;
+}
+.item input:checked + .mark { background: var(--polish); border-color: var(--ink); }
+.item input:focus-visible + .mark { outline: 3px solid var(--ink); outline-offset: 3px; }
+.item label:hover .mark { border-color: var(--ink); }
+.item h3 { font: italic 500 1.55rem/1.2 var(--serif); }
+.item p { color: var(--muted); max-width: 36em; font-size: 1rem; line-height: 1.5; margin-top: 3px; }
+.panel {
+  position: sticky; top: 92px; min-width: 0;
+  background: var(--leite); border-radius: 20px;
+  padding: clamp(22px, 3vw, 32px);
+}
+.panel h3 { font: italic 500 1.75rem/1.15 var(--serif); }
+.tens { display: grid; grid-template-columns: repeat(5, 1fr) 10px repeat(5, 1fr); gap: 5px; margin-top: 16px; }
+.tens i {
+  aspect-ratio: 2 / 3; border-radius: 50% 50% 4px 4px / 58% 58% 4px 4px;
+  background: #fff; border: 1.5px solid var(--line);
+  transition: background-color .25s ease, border-color .25s ease;
+}
+.tens i.gap { visibility: hidden; }
+.tens i.full { background: var(--polish); border-color: var(--ink); }
+.count { margin-top: 12px; font-size: .95rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+#message {
+  margin-top: 14px; white-space: pre-wrap; overflow-wrap: anywhere;
+  background: #fff; border-radius: 12px; padding: 14px 16px;
+  font-size: .97rem; line-height: 1.5;
+}
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.btn {
+  flex: 1 1 auto; text-align: center; text-decoration: none; cursor: pointer;
+  padding: 12px 18px; border-radius: 999px;
+  font: 600 .98rem/1.3 var(--sans);
+  border: 1.5px solid var(--accent);
+}
+.btn.main { background: var(--accent); color: var(--on-accent); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+
+/* Reconstrução e bem-estar */
+.duo { display: grid; grid-template-columns: 1fr 1fr; }
+.duo > div {
+  padding-block: clamp(56px, 8vw, 104px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px), calc((100vw - 1160px) / 2));
+  padding-right: clamp(24px, 5vw, 72px);
+  min-width: 0;
+}
+.duo > div + div {
+  padding-left: clamp(24px, 5vw, 72px);
+  padding-right: max(16px, env(safe-area-inset-right, 0px), calc((100vw - 1160px) / 2));
+}
+.fix { background: var(--ink); color: #FBE6E5; }
+.care { background: var(--petala); color: var(--ink); }
+.duo p { margin-top: 20px; max-width: 30em; }
+
+/* Contato */
+.contact {
+  background: var(--polish); color: var(--on-polish);
+  padding-block: clamp(56px, 8vw, 96px) 36px;
+  transition: background-color .7s ease, color .5s ease;
+}
+.contact dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 36px 0 0; }
+.contact dt { font-size: .97rem; opacity: .85; }
+.contact dd { margin: 4px 0 0; font: italic 500 1.4rem/1.3 var(--serif); overflow-wrap: anywhere; }
+.contact dd.todo { opacity: .7; font: 400 1rem/1.4 var(--sans); }
+.foot { margin-top: 56px; font-size: .93rem; opacity: .85; }
+
+@media (max-width: 880px) {
+  .top nav { display: none; }
+  .hero .inner { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .hero-text { padding-bottom: 12px; }
+  .fan-box { max-width: 560px; width: 100%; margin-inline: auto; }
+  .armor .inner, .pick { grid-template-columns: minmax(0, 1fr); }
+  .panel { position: static; }
+  .duo { grid-template-columns: minmax(0, 1fr); }
+  .duo > div, .duo > div + div {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .contact dl { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+<header class="top band">
+  <div class="inner">
+    <a class="brand" href="#inicio">Meire Fernandes</a>
+    <nav aria-label="Seções">
+      <a href="#blindagem">Blindagem</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#reconstrucao">Reconstrução</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="book" href="#servicos">Agendar</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero band" id="inicio">
+    <div class="paint" id="paint"></div>
+    <div class="inner">
+      <div class="hero-text">
+        <h1><span>Meire</span><span>Fernandes</span></h1>
+        <p class="lede">Esmalteria especializada em blindagem e estética das unhas, mãos e pés.</p>
+        <a class="cta" href="#servicos">Escolher meus serviços</a>
+      </div>
+      <div class="fan-box">
+        <p class="color-now" aria-live="polite"><b id="colorName">Vinho</b> <span>Toque numa cor do leque para pintar a página</span></p>
+        <svg class="fan" id="fan" viewBox="-40 10 720 490" role="group" aria-label="Leque de cores de esmalte"></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="armor band" id="blindagem">
+    <div class="inner">
+      <div class="armor-text">
+        <h2>Blindagem, a nossa especialidade</h2>
+        <p>A blindagem cobre a unha natural com camadas de gel e finaliza com top coat. A unha ganha resistência, o esmalte dura mais e o comprimento continua sendo o seu.</p>
+        <p>Quem quer mais comprimento pode combinar com o alongamento em fibra de vidro.</p>
+      </div>
+      <ul class="nail-cut" aria-label="Camadas da blindagem, de cima para baixo">
+        <li class="l-top"><b>Top coat</b><span>Brilho e proteção</span></li>
+        <li class="l-cor"><b>Cor</b><span>O esmalte que você escolher</span></li>
+        <li class="l-gel"><b>Base em gel</b><span>A camada que reforça</span></li>
+        <li class="l-unha"><b>Unha natural</b><span>Preparada e no seu comprimento</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="services band" id="servicos">
+    <div class="inner">
+      <div class="head">
+        <h2>Dez serviços, um para cada unha</h2>
+        <p>Marque o que você quer fazer. Cada escolha pinta uma unha, e sua mensagem de agendamento fica pronta ao lado.</p>
+      </div>
+      <div class="pick">
+        <ul class="list" id="list"></ul>
+        <aside class="panel" aria-label="Seu pedido">
+          <h3>Seu agendamento</h3>
+          <div class="tens" id="tens" aria-hidden="true"></div>
+          <p class="count" id="count"></p>
+          <p id="message"></p>
+          <div class="actions">
+            <a class="btn main" id="send" href="https://wa.me/" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+            <button class="btn ghost" id="copy" type="button">Copiar mensagem</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="duo" id="reconstrucao">
+    <div class="fix">
+      <h2>Unha com micose ou trauma tem reconstrução</h2>
+      <p>Reconstruímos unhas afetadas por micoses ou traumas, com um trabalho feito para devolver forma e aparência à unha de maneira eficaz.</p>
+    </div>
+    <div class="care">
+      <h2>Beleza e bem-estar em cada detalhe</h2>
+      <p>A hidratação com parafina e a massagem relaxante nos pés fazem do seu horário um momento de descanso.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="contact band" id="contato">
+  <div class="inner">
+    <h2>Venha cuidar das suas unhas</h2>
+    <dl id="contactList"></dl>
+    <p class="foot">Meire Fernandes Esmalteria</p>
+  </div>
+</footer>
+
+<script>
+/* Dados da loja. Preencha aqui e tudo se atualiza na página. WhatsApp só com números, com DDI e DDD: 5511999999999 */
+var LOJA = { whatsapp: '', endereco: '', horario: '' };
+
+var CORES = [
+  ['Ameixa', '#3E1638'], ['Vinho', '#5E0F24'], ['Cereja', '#A5122F'], ['Goiaba', '#E8505B'], ['Rosa chá', '#D9A3A0'],
+  ['Nude', '#E2BFA8'], ['Leite', '#F5E4DE'], ['Caramelo', '#9A5A2E'], ['Oliva', '#46502E'], ['Marinho', '#16264D']
+];
+var SERVICOS = [
+  ['Blindagem', 'Camadas de gel sobre a unha natural, para ela ficar mais resistente e o esmalte durar mais.'],
+  ['Alongamento com fibra de vidro', 'Fibra aplicada sobre a unha para dar comprimento com aparência leve e natural.'],
+  ['Esmaltação em gel', 'Esmalte curado em cabine, com brilho intenso e duração maior que a do esmalte comum.'],
+  ['Cutilagem russa', 'Técnica feita com brocas finas, que limpa a cutícula com precisão e deixa o acabamento bem rente.'],
+  ['Nail designer', 'Formato, comprimento e acabamento pensados para a sua mão.'],
+  ['Pé e mão tradicional', 'O cuidado de sempre: cutículas, formato das unhas e esmaltação.'],
+  ['Plástica dos pés', 'Tratamento dos calos e das asperezas, para deixar os pés lisos e macios.'],
+  ['Reconstrução de unhas', 'Para unhas afetadas por micoses ou traumas.'],
+  ['Hidratação com parafina', 'Parafina morna que deixa a pele das mãos ou dos pés macia e hidratada.'],
+  ['Massagem relaxante nos pés', 'Uma pausa para aliviar o cansaço do dia.']
+];
+
+var root = document.documentElement, $ = function (id) { return document.getElementById(id); };
+var corAtual = 1, marcados = [true];
+
+function lum(hex) {
+  var c = [1, 3, 5].map(function (i) {
+    var v = parseInt(hex.substr(i, 2), 16) / 255;
+    return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4);
+  });
+  return .2126 * c[0] + .7152 * c[1] + .0722 * c[2];
+}
+function tinta(hex) {
+  var L = lum(hex), claro = '#FFF4F3', escuro = '#2C0A17';
+  return (lum(claro) + .05) / (L + .05) >= (L + .05) / (lum(escuro) + .05) ? claro : escuro;
+}
+function aplicar(hex) {
+  var on = tinta(hex), legivel = lum(hex) < .17;
+  root.style.setProperty('--polish', hex);
+  root.style.setProperty('--on-polish', on);
+  root.style.setProperty('--accent', legivel ? hex : '#2C0A17');
+  root.style.setProperty('--on-accent', legivel ? on : '#FFF4F3');
+}
+
+/* Leque */
+var NS = 'http://www.w3.org/2000/svg', fan = $('fan'), paint = $('paint');
+var ponta = 'M286 212 C282 150 290 72 320 66 C350 72 358 150 354 212 C338 222 302 222 286 212 Z';
+CORES.forEach(function (c, i) {
+  var g = document.createElementNS(NS, 'g');
+  g.setAttribute('class', 'sw' + (i === corAtual ? ' on' : ''));
+  g.style.setProperty('--a', (-54 + i * 12) + 'deg');
+  g.setAttribute('tabindex', '0');
+  g.setAttribute('role', 'button');
+  g.setAttribute('aria-label', 'Cor ' + c[0]);
+  g.setAttribute('aria-pressed', i === corAtual);
+  g.innerHTML = '<g class="lift">' +
+    '<path d="M308 214 L314 470 L326 470 L332 214 Z" fill="rgba(255,255,255,.34)"/>' +
+    '<path class="nail" d="' + ponta + '" fill="' + c[1] + '" stroke="rgba(255,255,255,.5)" stroke-width="1.2"/>' +
+    '<path d="M300 186 C297 140 303 100 317 84" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="7" stroke-linecap="round"/>' +
+    '</g>';
+  g.addEventListener('click', function () { escolher(i, g); });
+  g.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); escolher(i, g); }
+  });
+  fan.appendChild(g);
+});
+var rebite = document.createElementNS(NS, 'g');
+rebite.innerHTML = '<circle cx="320" cy="470" r="19" fill="#E9D3C4"/><circle cx="320" cy="470" r="8" fill="#8F7468"/>';
+fan.appendChild(rebite);
+
+var pintura;
+function escolher(i, g) {
+  if (i === corAtual) return;
+  corAtual = i;
+  var hex = CORES[i][1];
+  Array.prototype.forEach.call(fan.querySelectorAll('.sw'), function (s, n) {
+    s.classList.toggle('on', n === i);
+    s.setAttribute('aria-pressed', n === i);
+  });
+  $('colorName').textContent = CORES[i][0];
+  aplicar(hex);
+  atualizar();
+
+  var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hero = $('inicio');
+  clearTimeout(pintura);
+  if (calmo) { root.style.setProperty('--hero', hex); return; }
+  var a = hero.getBoundingClientRect(), b = g.querySelector('.nail').getBoundingClientRect();
+  var at = ' at ' + (b.left + b.width / 2 - a.left) + 'px ' + (b.top + b.height / 2 - a.top) + 'px';
+  paint.style.transition = 'none';
+  paint.style.background = hex;
+  paint.style.clipPath = 'circle(0px' + at + ')';
+  paint.getBoundingClientRect();
+  paint.style.transition = 'clip-path .7s cubic-bezier(.3,.7,.3,1)';
+  paint.style.clipPath = 'circle(' + Math.ceil(Math.hypot(a.width, a.height)) + 'px' + at + ')';
+  pintura = setTimeout(function () {
+    root.style.setProperty('--hero', hex);
+    paint.style.transition = 'none';
+    paint.style.clipPath = 'circle(0px at 50% 50%)';
+  }, 720);
+}
+
+/* Serviços */
+var list = $('list'), tens = $('tens');
+SERVICOS.forEach(function (s, i) {
+  var li = document.createElement('li');
+  li.className = 'item';
+  li.innerHTML = '<label for="s' + i + '"><input type="checkbox" id="s' + i + '"' + (marcados[i] ? ' checked' : '') + '>' +
+    '<span class="mark"></span><span><h3></h3><p></p></span></label>';
+  li.querySelector('h3').textContent = s[0];
+  li.querySelector('p').textContent = s[1];
+  li.querySelector('input').addEventListener('change', function (e) { marcados[i] = e.target.checked; atualizar(); });
+  list.appendChild(li);
+});
+for (var n = 0; n < 11; n++) {
+  var u = document.createElement('i');
+  if (n === 5) u.className = 'gap';
+  tens.appendChild(u);
+}
+
+function texto() {
+  var nomes = SERVICOS.filter(function (s, i) { return marcados[i]; }).map(function (s) { return s[0]; });
+  if (!nomes.length) return '';
+  return 'Olá, Meire! Quero agendar: ' + nomes.join(', ') + '. Cor que gostei: ' + CORES[corAtual][0] + '. Qual é o melhor horário?';
+}
+function atualizar() {
+  var msg = texto(), total = marcados.filter(Boolean).length;
+  var unhas = tens.querySelectorAll('i:not(.gap)');
+  Array.prototype.forEach.call(unhas, function (u, i) { u.classList.toggle('full', i < total); });
+  $('count').textContent = total === 1 ? '1 de 10 serviços escolhido' : total + ' de 10 serviços escolhidos';
+  $('message').textContent = msg || 'Marque ao menos um serviço para montar sua mensagem.';
+  var send = $('send');
+  send.href = 'https://wa.me/' + LOJA.whatsapp + '?text=' + encodeURIComponent(msg);
+  send.setAttribute('aria-disabled', !msg);
+  $('copy').disabled = !msg;
+  $('copy').setAttribute('aria-disabled', !msg);
+}
+$('copy').addEventListener('click', function () {
+  var b = this, ok = function (t) { b.textContent = t; setTimeout(function () { b.textContent = 'Copiar mensagem'; }, 1800); };
+  var selecionar = function () {
+    var r = document.createRange(); r.selectNodeContents($('message'));
+    var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    ok('Selecionada, copie agora');
+  };
+  if (navigator.clipboard) navigator.clipboard.writeText(texto()).then(function () { ok('Mensagem copiada'); }, selecionar);
+  else selecionar();
+});
+
+/* Contato */
+[['WhatsApp', LOJA.whatsapp], ['Endereço', LOJA.endereco], ['Horário de atendimento', LOJA.horario]].forEach(function (c) {
+  var box = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
+  dt.textContent = c[0];
+  dd.textContent = c[1] || 'A preencher pela loja';
+  if (!c[1]) dd.className = 'todo';
+  box.appendChild(dt); box.appendChild(dd);
+  $('contactList').appendChild(box);
+});
+
+aplicar(CORES[corAtual][1]);
+atualizar();
+</script>
+</html>
